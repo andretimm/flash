@@ -11,7 +11,15 @@ generator client {
   previewFeatures = ["mongoDb"]
 }
 
-model Messages {
+model Message {
+  id        String    @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  title     String
+  body      String  
+  timer     String
+  created_date String 
+}
+
+model Teste {
   id        String    @id @default(dbgenerated()) @map("_id") @db.ObjectId
   title     String
   body      String  
