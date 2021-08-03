@@ -5,7 +5,7 @@ class MessageService {
   constructor(private messageRepository: IMessagesRepositories) {}
 
   async findOne(id: string): Promise<Message> {
-    const message: IMongoMessage = await this.messageRepository.getMessage(id);
+    const message: IMongoMessage = await this.messageRepository.getMessageById(id);
     if (!message) {
       throw new Error("Message not found");
     }

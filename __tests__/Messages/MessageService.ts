@@ -1,7 +1,7 @@
-import { IMessagesRepositories } from "../src/repositories/IMessagesRepositories";
-import { MessageService } from "../src/modules/Message/MessageService";
-import { LocalMessagesRepositories } from "../src/repositories/local/LocalMessagesRepositories";
-import { Message } from "../src/entities/Message";
+import { IMessagesRepositories } from "../../src/repositories/IMessagesRepositories";
+import { MessageService } from "../../src/modules/Message/MessageService";
+import { LocalMessagesRepositories } from "../../src/repositories/local/LocalMessagesRepositories";
+import { Message } from "../../src/entities/Message";
 
 describe("Messages", () => {
   let messageRepository: IMessagesRepositories;

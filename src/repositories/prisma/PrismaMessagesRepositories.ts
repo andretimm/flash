@@ -7,7 +7,7 @@ class PrismaMessagesRepositories implements IMessagesRepositories {
     throw new Error("Method not implemented.");
   }
 
-  async getMessage(id: string): Promise<IMongoMessage> {
+  async getMessageById(id: string): Promise<IMongoMessage> {
     const message = await prisma.message.findUnique({ where: { id } });
     return message;
   }

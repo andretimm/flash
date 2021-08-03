@@ -13,7 +13,7 @@ class LocalMessagesRepositories implements IMessagesRepositories {
     return Message.sanitize(message);
   }
 
-  async getMessage(id: string): Promise<IMongoMessage> {
+  async getMessageById(id: string): Promise<IMongoMessage> {
     const message = this.messages.find((m) => m.id === id);
     return message ? Message.fromMongo(message) : undefined;
   }
