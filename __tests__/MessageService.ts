@@ -14,26 +14,30 @@ describe("Messages", () => {
 
   it("should create a new message", async () => {
     expect.assertions(2);
-    const message: Message = Message.create({
+    const message: Message = new Message({
       title: "Test message",
       body: "Test message text",
-      timer: "3600",
-      created_date: new Date().toISOString(),
+      timer: 3600,
+      created_date: new Date(),
     });
-    const createdMessage = await messageService.createMessage(message);
+    const createdMessage = await messageService.createMessage(
+      Message.fromMongo(message)
+    );
     expect(createdMessage).toHaveProperty("id");
     expect(createdMessage.title).toBe("Test message");
   });
 
   it("should get one message", async () => {
-    const message: Message = Message.create({
+    const message: Message = new Message({
       title: "Test message",
       body: "Test message text",
-      timer: "3600",
-      created_date: new Date().toISOString(),
+      timer: 3600,
+      created_date: new Date(),
     });
-    await messageService.createMessage(message);
-    const messages = await messageService.findOne(message.id);
+    const teste = await messageService.createMessage(
+      Message.fromMongo(message)
+    );
+    const messages = await messageService.findOne(teste.id);
     expect(messages).toHaveProperty("id");
   });
 
