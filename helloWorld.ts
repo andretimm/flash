@@ -1,5 +1,5 @@
 import supertest from "supertest";
-import { app } from "../../src/app";
+import { app } from "./src/app";
 
 test("GET / Hello World", async () => {
   const res = await supertest(app).get("/");
