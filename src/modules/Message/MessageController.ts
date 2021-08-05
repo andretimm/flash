@@ -6,8 +6,20 @@ class MessageController {
 
   async getMessageByID(req: Request, res: Response) {
     const { messageID } = req.params;
-    const message = await this.messageService.findOne(messageID);
-    return res.json(message);
+    try {
+      return res.json(await this.messageService.findOne(messageID));
+    } catch (error) {
+      return res.status(400).send(error.message);
+    }
+  }
+
+  async createNewMessage(req: Request, res: Response) {
+    const message = req.body;
+    try {
+      return res.json(await this.messageService.createMessage(message));
+    } catch (error) {
+      return res.status(400).send(error.message);
+    }
   }
 }
 

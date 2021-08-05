@@ -1,8 +1,8 @@
-import { IMongoMessage, Message } from "../entities/Message";
+import { IMessage } from "../entities/Message";
 
 interface IMessagesRepositories {
-  create(message: IMongoMessage): Promise<Message>;
-  getMessageById(id: string): Promise<IMongoMessage>;
+  create(message: IMessage): Promise<IMessage>;
+  getMessageById(id: string): Promise<IMessage>;
 }
 
 export { IMessagesRepositories };

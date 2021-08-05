@@ -1,4 +1,4 @@
-interface IMongoMessage {
+interface IMessage {
   id?: string;
   title: string;
   body: string;
@@ -23,17 +23,17 @@ class Message {
     });
   }
 
-  static sanitize(mongoMessage: IMongoMessage): Message {
+  static fromJson(message: IMessage): Message {
     return new Message({
-      id: mongoMessage.id,
-      title: mongoMessage.title.trim(),
-      body: mongoMessage.body.trim(),
-      timer: parseInt(mongoMessage.timer.trim()),
-      created_date: new Date(mongoMessage.created_date.trim()),
+      id: message.id,
+      title: message.title.trim(),
+      body: message.body.trim(),
+      timer: parseInt(message.timer.trim()),
+      created_date: new Date(message.created_date.trim()),
     });
   }
 
-  static fromMongo(message: Message): IMongoMessage {
+  static toJson(message: Message): IMessage {
     return {
       title: message.title,
       body: message.body,
@@ -43,4 +43,4 @@ class Message {
   }
 }
 
-export { Message, IMongoMessage };
+export { Message, IMessage };

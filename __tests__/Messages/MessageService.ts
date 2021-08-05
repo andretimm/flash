@@ -21,7 +21,7 @@ describe("Messages", () => {
       created_date: new Date(),
     });
     const createdMessage = await messageService.createMessage(
-      Message.fromMongo(message)
+      Message.toJson(message)
     );
     expect(createdMessage).toHaveProperty("id");
     expect(createdMessage.title).toBe("Test message");
@@ -34,9 +34,7 @@ describe("Messages", () => {
       timer: 3600,
       created_date: new Date(),
     });
-    const teste = await messageService.createMessage(
-      Message.fromMongo(message)
-    );
+    const teste = await messageService.createMessage(Message.toJson(message));
     const messages = await messageService.findOne(teste.id);
     expect(messages).toHaveProperty("id");
   });

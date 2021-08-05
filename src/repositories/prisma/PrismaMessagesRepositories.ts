@@ -1,13 +1,14 @@
 import { prisma } from "../../database/client";
-import { IMongoMessage, Message } from "../../entities/Message";
+import { IMessage } from "../../entities/Message";
 import { IMessagesRepositories } from "../IMessagesRepositories";
 
 class PrismaMessagesRepositories implements IMessagesRepositories {
-  create(message: IMongoMessage): Promise<Message> {
-    throw new Error("Method not implemented.");
+  async create(message: IMessage): Promise<IMessage> {
+    const response = await prisma.message.create({ data: message });
+    return response;
   }
 
-  async getMessageById(id: string): Promise<IMongoMessage> {
+  async getMessageById(id: string): Promise<IMessage> {
     const message = await prisma.message.findUnique({ where: { id } });
     return message;
   }
