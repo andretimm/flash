@@ -6,7 +6,8 @@
     "allowJs": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false
   },
   "include": [
     "src/**/*.ts"

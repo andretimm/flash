@@ -1,6 +1,7 @@
-import { IMessage, Message } from "../../entities/Message";
+import { Message } from "../../entities/Message";
 import { IMessagesRepositories } from "../IMessagesRepositories";
 import { v4 as uuid } from "uuid";
+import { IMessage } from "../../interfaces/IMessage";
 
 class LocalMessagesRepositories implements IMessagesRepositories {
   private messages: Message[] = [];

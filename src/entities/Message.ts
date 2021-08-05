@@ -1,10 +1,4 @@
-interface IMessage {
-  id?: string;
-  title: string;
-  body: string;
-  timer: string;
-  created_date: string;
-}
+import { IMessage } from "../interfaces/IMessage";
 
 class Message {
   id?: string;
@@ -43,4 +37,4 @@ class Message {
   }
 }
 
-export { Message, IMessage };
+export { Message };

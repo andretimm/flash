@@ -47,5 +47,6 @@ describe("Message Routers", () => {
   it("shout not create a message with invalid data", async () => {
     const message = await request(app).post("/message").send({});
     expect(message.status).toBe(400);
+    expect(message.body).toHaveProperty("errors");
   });
 });

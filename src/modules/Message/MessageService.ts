@@ -1,4 +1,5 @@
-import { IMessage, Message } from "../../entities/Message";
+import { Message } from "../../entities/Message";
+import { IMessage } from "../../interfaces/IMessage";
 import { IMessagesRepositories } from "../../repositories/IMessagesRepositories";
 
 class MessageService {

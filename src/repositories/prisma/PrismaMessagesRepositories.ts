@@ -1,5 +1,5 @@
 import { prisma } from "../../database/client";
-import { IMessage } from "../../entities/Message";
+import { IMessage } from "../../interfaces/IMessage";
 import { IMessagesRepositories } from "../IMessagesRepositories";
 
 class PrismaMessagesRepositories implements IMessagesRepositories {

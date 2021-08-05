@@ -1,4 +1,4 @@
-import { IMessage } from "../entities/Message";
+import { IMessage } from "../interfaces/IMessage";
 
 interface IMessagesRepositories {
   create(message: IMessage): Promise<IMessage>;
