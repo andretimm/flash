@@ -1,8 +1,13 @@
 import request from "supertest";
 import { app } from "../../src/app";
+import { prisma } from "../../src/database/client";
 import { Message } from "../../src/entities/Message";
 
 describe("Message Routers", () => {
+  afterAll(async () => {
+    await prisma.message.deleteMany({});
+  });
+
   it("should create a new message", async () => {
     const message: Message = new Message({
       title: "Test message",
@@ -41,7 +46,7 @@ describe("Message Routers", () => {
   it("should not return a message that does not exist", async () => {
     const message = await request(app).get(`/message/610827370074698d000bdd02`);
     expect(message.status).toBe(400);
-    expect(message.text).toBe("Message not found");
+    expect(message.body).toHaveProperty("errors");
   });
 
   it("shout not create a message with invalid data", async () => {

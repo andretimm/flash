@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
+import { Errors } from "../../entities/Error";
 import { MessageService } from "./MessageService";
 
 class MessageController {
@@ -10,7 +11,7 @@ class MessageController {
     try {
       return res.json(await this.messageService.findOne(messageID));
     } catch (error) {
-      return res.status(400).send(error.message);
+      return res.status(400).send(new Errors({ msg: error.message }));
     }
   }
 
@@ -24,7 +25,7 @@ class MessageController {
     try {
       return res.json(await this.messageService.createMessage(message));
     } catch (error) {
-      return res.status(400).send(error.message);
+      return res.status(400).send(new Errors({ msg: error.message }));
     }
   }
 }
