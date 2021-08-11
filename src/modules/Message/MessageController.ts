@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import { Errors } from "../../entities/Error";
+import { Message } from "../../entities/Message";
 import { MessageService } from "./MessageService";
 
 class MessageController {
@@ -27,6 +28,12 @@ class MessageController {
     } catch (error) {
       return res.status(400).send(new Errors({ msg: error.message }));
     }
+  }
+
+  isExpired(message: Message) {
+    const { created_date, timer } = message;
+    created_date.setMilliseconds(created_date.getMilliseconds() + timer);
+    return created_date < new Date();
   }
 }
 

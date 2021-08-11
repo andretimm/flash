@@ -2,6 +2,10 @@ import request from "supertest";
 import { app } from "../../src/app";
 import { prisma } from "../../src/database/client";
 import { Message } from "../../src/entities/Message";
+import { MessageController } from "../../src/modules/Message/MessageController";
+import { MessageService } from "../../src/modules/Message/MessageService";
+import { IMessagesRepositories } from "../../src/repositories/IMessagesRepositories";
+import { LocalMessagesRepositories } from "../../src/repositories/local/LocalMessagesRepositories";
 
 describe("Message Routers", () => {
   afterAll(async () => {
@@ -54,4 +58,32 @@ describe("Message Routers", () => {
     expect(message.status).toBe(400);
     expect(message.body).toHaveProperty("errors");
   });
+});
+
+describe("Message Controller", () => {
+  let messageRepository: IMessagesRepositories;
+  let messageService: MessageService;
+  let messageController: MessageController;
+
+  beforeAll(() => {
+    messageRepository = new LocalMessagesRepositories();
+    messageService = new MessageService(messageRepository);
+    messageController = new MessageController(messageService);
+  });
+
+  it("should return if the message is expired", async () => {
+    const message: Message = new Message({
+      title: "Test message",
+      body: "Test message text expired",
+      timer: 1000,
+      created_date: new Date(),
+    });
+
+    //Sleep
+    await new Promise((resolve) => setTimeout(resolve, 1001));
+
+    const expiredMessage = messageController.isExpired(message);
+    expect(expiredMessage).toBe(true);
+  });
+
 });
